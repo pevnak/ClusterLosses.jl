@@ -3,5 +3,6 @@ using Zygote
 
 include("utils.jl")
 include("tripletloss.jl")
-export TripletLoss, loss
+include("nca.jl")
+export Triplet, NCA, loss
 end # module
