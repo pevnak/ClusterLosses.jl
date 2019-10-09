@@ -10,7 +10,7 @@ using FiniteDifferences, Flux
 	@test idxs[3] ≈ [3]
 end
 
-@testset "tripletloss" begin 
+@testset "Tripletloss" begin 
 	l = Triplet(1)
 	y = [1,1,2,2]
 	d =  [0.67  0.25  1.46  0.63;
@@ -44,7 +44,6 @@ end
 	o  += -log(exp(-d[3,4])) + log(exp(-d[1,3]) + exp(-d[2,3]))
 	o  += -log(exp(-d[3,4])) + log(exp(-d[1,4]) + exp(-d[2,4]))
 	@test loss(l, d, y) ≈ o / 4
-
 
 	fdm = central_fdm(5, 1);
 	@test grad(fdm, d -> sum(loss(l, d, y)), d) ≈ ClusterLosses.∇loss(1, l, d, y)
