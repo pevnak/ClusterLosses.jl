@@ -59,6 +59,6 @@ end
 
 @testset "distances" begin
     x = randn(2,4);
-    @test pairwise(SqEuclidean(), x) ≈ ClusterLosses._euclid(x)
-    @test pairwise(CosineDist, x) ≈ ClusterLosses._cosine(x)
+    @test pairwise(SqEuclidean(), x, dims = 2) ≈ ClusterLosses._euclid(x)
+    @test pairwise(CosineDist(), x, dims = 2) ≈ ClusterLosses._cosine(x)
 end
