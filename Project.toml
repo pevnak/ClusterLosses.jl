@@ -3,10 +3,11 @@ uuid = "33103f26-f673-4add-b1b0-418ff5de9e40"
 authors = ["Pevnak <pevnak@gmail.com>"]
 version = "0.1.0"
 
-
 [deps]
+Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [test]
-Flux = "587475ba-b771-5e3f-ad9e-33799f191a9c"
 FiniteDifferences = "26cc04aa-876d-5657-8c51-4c34ba976000"
+Flux = "587475ba-b771-5e3f-ad9e-33799f191a9c"

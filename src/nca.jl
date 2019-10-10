@@ -1,17 +1,15 @@
-
-struct NCA
+"""
+	NCA(ϵ = 1f-6)
+	
+	Neighborhood components analysis loss function of  	*Goldberger, Jacob, Roweis, Sam, Hinton, Geoff, and Salakhutdinov, Ruslan.  Neighbourhood components analysis.  In sAdvances in Neural Information Processing Systems 17, pp. 513–520. MITPress, 2004.*
+"""
+struct NCA{T}
 	ϵ::T
 end
 
 NCA() = NCA(1f-6)
 
-"""
-function loss(l::NCA, d::AbstractMatrix, y)
 
-	d --- a square matrix with distances
-	y --- Vector with labels
-
-"""
 function loss(l::NCA, d::AbstractMatrix{T}, y::AbstractVector) where {T}
 	@assert size(d,1) == size(d,2) == length(y)
 	idxs = labelmap(y)
