@@ -19,8 +19,9 @@ using ClusterLosses, Distances
 y = [1,1,2,2];
 x = rand(2,4)
 loss(Triplet(1), SqEuclidean(),  x, y)
-loss(NCA(), SqEuclidean(),  x, y)
+loss(NCA(), CosineDist(),  x, y)
 ```
+Note that at the moment, we support only SqEuclidean distance and Cosine Similarity
 
 
 The loss functions are compatible with Flux, i.e. gradients are provided. 
