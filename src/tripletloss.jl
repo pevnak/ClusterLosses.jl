@@ -3,7 +3,7 @@ struct Triplet{T<:Number}
 	α::T
 end
 
-Triplet() = Triplet(1)
+Triplet() = Triplet(1f0)
 
 """
 function loss(l::Triplet, d::AbstractMatrix, y)

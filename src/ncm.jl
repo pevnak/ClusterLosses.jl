@@ -1,7 +1,7 @@
 """
 	NCM(ϵ = 1f-6)
 	
-	Neighborhood components analysis loss function of  	*Mensink, Thomas, et al. "Distance-based image classification: Generalizing to new classes at near-zero cost." IEEE transactions on pattern analysis and machine intelligence 35.11 (2013): 2624-2637.*
+	Nearest Class Mean loss function of  	*Mensink, Thomas, et al. "Distance-based image classification: Generalizing to new classes at near-zero cost." IEEE transactions on pattern analysis and machine intelligence 35.11 (2013): 2624-2637.*
 """
 struct NCM{T}
 	ϵ::T
