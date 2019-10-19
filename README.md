@@ -3,7 +3,7 @@ Loss function to learn distance metrics
 
 So far we have 
   * `Triplet(1)` Triplet loss  (*Weinberger,  Kilian Q. and Saul,  Lawrence K.   Distance metric learning for large margin nearestneighbor classification.J. Mach. Learn. Res., 10:207–244, June 2009. ISSN 1532-4435.*) 
-  *`NCA()` Neighbourhood components analysis loss  (*Goldberger, Jacob, Roweis, Sam, Hinton, Geoff, and Salakhutdinov, Ruslan.  Neighbourhood components analysis.  In Advances in Neural Information Processing Systems 17, pp. 513–520. MITPress, 2004.*). 
+  * `NCA()` Neighbourhood components analysis loss  (*Goldberger, Jacob, Roweis, Sam, Hinton, Geoff, and Salakhutdinov, Ruslan.  Neighbourhood components analysis.  In Advances in Neural Information Processing Systems 17, pp. 513–520. MITPress, 2004.*). 
   * `NCM()` Nearest Class Mean  *Mensink, Thomas, et al. "Distance-based image classification: Generalizing to new classes at near-zero cost." IEEE transactions on pattern analysis and machine intelligence 35.11 (2013): 2624-2637.*
 
 The losses works as follows
