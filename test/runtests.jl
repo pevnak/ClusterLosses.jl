@@ -48,7 +48,7 @@ end
 	o += max(0, d[1,2] - d[2,3] + 1) + max(0, d[2,1] - d[2,4] + 1)
 	o += max(0, d[3,4] - d[3,1] + 1) + max(0, d[3,4] - d[3,2] + 1)
 	o += max(0, d[3,4] - d[4,1] + 1) + max(0, d[3,4] - d[4,2] + 1)
-	o /= 8
+	o = o/8 + (0.25 + 1.64)/2
 	@test loss(l, d, y) ≈ o
 
 
@@ -67,7 +67,7 @@ end
 		  1.5   1.5	 0.0  0.0;
 		  0.0   0.0  1.5  1.5;
 	 	  0.0   0.0  1.5  1.5]
- 	@test loss(l, d, y) == 2.5
+ 	@test loss(l, d, y) == 2.5 + 1.5
 end
 
 @testset "NCA loss" begin 
@@ -118,5 +118,8 @@ end
  	x₂ = [1.0 0 1 0 -1;
  		  0   1 0 1  0];
  	@test loss(l, CosineDist(), x₁, y) < loss(l, CosineDist(), x₂, y)
+	@test gradient(x -> loss(l, SqEuclidean() , x, y), x)[1] ≈ grad(fdm, x -> sum(loss(l, SqEuclidean(), x, y)), x)
+	@test gradient(x -> loss(l, CosineDist() , x, y), x)[1] ≈ grad(fdm, x -> sum(loss(l, CosineDist() , x, y)), x)
+
 end
 

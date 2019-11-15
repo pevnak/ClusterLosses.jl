@@ -15,36 +15,41 @@ function loss(l::Triplet, d::AbstractMatrix, y)
 function loss(l::Triplet, d::AbstractMatrix{T}, y::AbstractVector) where {T}
 	@assert size(d,1) == size(d,2) == length(y)
 	idxs = labelmap(y)
-	o, n = zero(T), 0
+	o₁, o₂, n₁, n₂ = zero(T),zero(T), 0, 0
 	for i in 1:size(d,2)
 		yᵢ = y[i]
 		for j in setdiff(idxs[yᵢ], i)
 			for k in setdiff(1:size(d,2), idxs[yᵢ])
-				o += max(0, d[i,j] - d[i,k] + l.α)
-				n += 1
+				o₁ += max(0, d[i,j] - d[i,k] + l.α)
+				n₁ += 1
 			end
+			o₂ += d[i,j]
+			n₂ += 1
 		end
 	end
-	o / n
+	o₁ / n₁ + o₂ / n₂
 end
 
 function ∇loss(Δ, l::Triplet, d::AbstractMatrix{T}, y::AbstractVector) where {T}
 	@assert size(d,1) == size(d,2) == length(y)
 	idxs = labelmap(y)
-	o, n = zero(d), 0
+	o₁, n₁ = zero(d), 0
+	o₂, n₂ = zero(d), 0
 	for i in 1:size(d,2)
 		yᵢ = y[i]
 		for j in setdiff(idxs[yᵢ], i)
 			for k in setdiff(1:size(d,2), idxs[yᵢ])
 				if (d[i,j] - d[i,k] + l.α) > 0
-					o[i,j] += Δ
-					o[i,k] -= Δ
+					o₁[i,j] += Δ
+					o₁[i,k] -= Δ
 				end
-				n += 1
+				n₁ += 1
 			end
+			o₂[i,j] += Δ
+			n₂ += 1
 		end
 	end
-	o ./ n
+	o₁ / n₁ + o₂ / n₂
 end
 
 Zygote.@adjoint function loss(l::Triplet, d::AbstractMatrix{T}, y::AbstractVector) where {T}
